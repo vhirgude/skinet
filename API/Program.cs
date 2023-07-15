@@ -1,5 +1,6 @@
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Core.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<StoreContext>(opt=>{
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefultConnection"));
 });
 
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
 
 var app = builder.Build();
 
